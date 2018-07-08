@@ -1,0 +1,24 @@
+/*Variables*/
+$amarillo-principal: #FFE600;
+$gris-claro: #EEEEEE;
+$gris-oscuro: #999999;
+$negro: #333333;
+
+#cajaBusqueda {
+  background: $amarillo-principal;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  padding:5px 0;
+  	input {
+  		margin-left:2.083%;
+  		height:26px;
+  		width:70.84%;
+  		font-size:18px;
+  		color:$gris-oscuro;
+  		border:none;
+      border-radius: 5px 0px 0px 5px;
+  	}
+}
+
+

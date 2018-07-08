@@ -1,0 +1,15 @@
+/*Variables*/
+#cajaBusqueda {
+  background: #FFE600;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px 0; }
+  #cajaBusqueda input {
+    margin-left: 2.083%;
+    height: 26px;
+    width: 70.84%;
+    font-size: 18px;
+    color: #999999;
+    border: none;
+    border-radius: 5px 0px 0px 5px; }
