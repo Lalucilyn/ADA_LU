@@ -1,0 +1,20 @@
+Paradigma de objetos
+- Atributos
+- Métodos
+
+Hay dos paradigmas de programación:
+- Estructurada / procedural
+- Orientada a objetos
+
+Programación funcional
+Función: serie de sentencias que recibe o no un input y devuelve algo.
+Funciones puras: tienen dos reglas fundamentales 
+- No tienen que afectar a su entorno (!= programación procedural en la que declaro todas mis variables como globales y las voy pisando con mis funciones)
+(por ejemplo, una función que cambia el valor de una variable global ES IMPURA)
+- Es invariante en resultado (a mismo parámetro, mismo resultado SIEMPRE)
+
+Tiene que devolver siempre lo mismo (tiene que tener consistencia en lo que devuelve) a partir de los parámetros que se le pasan (por ejemplo, una función que devuelve la fecha de hoy IS UNCLEAN, lo mismo si mi función hace algo con el elemento[index] de un array - si el array cambia, va a cambiar lo que devuelve)... una función que pide el año de nacimiento es pura, una función que pide la edad, no. Math.random y cualquier método que devuelva algo aleatorio IS DIRTY.
+
+
+
+

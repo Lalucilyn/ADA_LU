@@ -1,0 +1,62 @@
+* {
+	box-sizing:border-box;
+}
+
+#skills {
+	transform:translateY(-40%);
+}
+
+section {
+	margin:10px;
+	display:grid;
+	grid-template-columns:50% 50%;
+	grid-gap: 20px;
+	text-align:justify;
+
+}
+
+.emptyBar {
+	width:92%;
+	height:15px;
+	/*outline:2px solid black;*/
+	background:plum;
+	margin:0;
+	padding:0;
+	display:flex;
+	justify-content:flex-start;
+}
+
+#html5,#css3,#javascript,#node,#react {
+	background:#6a1b9a;
+	height:100%;
+}
+
+#html5 {
+	width:98%;
+}
+
+#css3 {
+	width:96%;
+}
+
+#javascript {
+	width:89%;
+}
+
+#node {
+	width:85%;
+}
+
+#react {
+	width:10%;
+}
+
+@media all and (max-width:780px){
+	#skills {
+		transform:none;
+	}
+
+	section {
+		display:block;
+	}
+}

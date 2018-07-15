@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#github {
+	transform:translateY(-10%);
+
+}
+
+#github section {
+	width:80%;
+	margin:0 auto;
+}
+
+#github p {
+	text-align:justify;
+	padding:5px;
+}
+
+.repoLink {
+	color:purple;
+}
+
+.repos {
+	text-align:center;
+	background:plum;
+	width:95%;
+	padding:5px;
+	height:70px;
+	border-radius:3px;
+}
+
+.impar {
+	margin-top:10px;
+}
+
+
+@media all and (max-width:780px){
+	#github{
+		transform:none;
+	}
+
+	#github section {
+		width:98%;
+	}
+	
+	.repos {
+		margin:5px 0;
+		width:100%;
+	}
+}

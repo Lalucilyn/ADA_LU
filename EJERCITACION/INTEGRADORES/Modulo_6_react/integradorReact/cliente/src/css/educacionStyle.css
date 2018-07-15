@@ -1,0 +1,33 @@
+#educacion {
+	transform:translateY(-70%);
+}
+
+.plum {
+	background:plum;
+	width:96%;
+	text-align:center;
+	padding:3px;
+	border-radius:3px;
+}
+
+@media all and (max-width:780px){
+	.plum {
+		width:100%;
+	}
+}
+
+
+h3 {
+	margin-top:5px;
+}
+
+@media all and (max-width:780px){
+	#educacion{
+		transform:none;
+	}
+
+	.plum {
+		margin:5px 0;
+		width:100%;
+	}
+}

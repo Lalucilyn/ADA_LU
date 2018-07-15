@@ -1,0 +1,54 @@
+#ficha {
+	display:flex;
+	flex-wrap:wrap;
+	align-items:center;
+	width:60%;
+	justify-content:center;
+	margin:0 auto;
+	background:white;
+	transform:translateY(-50%);
+	box-shadow:2px 2px 2px plum;
+}
+
+#ficha figure {
+	width:30%;
+	display:flex;
+	justify-content:center;
+}
+
+#ficha figure img {
+	width:500px;
+	height:auto
+}
+#ficha article {
+	width:45%;
+}
+
+li {
+	list-style:none;
+}
+
+i{
+	margin-right:4px;
+	font-size:1em;
+}
+
+@media all and (max-width:780px) {
+	#ficha {
+		flex-direction:column;
+		flex-wrap:wrap;
+		align-items:center;
+		width:100%;
+		transform:none;
+		box-shadow:none;
+	}
+	#ficha figure img{
+		width:300px;
+		height:300px;
+	}
+
+	#ficha article {
+		width:80%;
+	}
+
+}

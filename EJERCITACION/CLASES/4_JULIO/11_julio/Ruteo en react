@@ -1,0 +1,19 @@
+Ruteo en react
+AppJs es el route/el componente padre y yo tengo los distintos componentes.
+ 
+Instalar por npm 
+react-router-dom
+(en la carpeta en la que está nuestro proyecto)
+
+Me importo el módulo
+
+Import {
+	BrowserRouter as Router,
+	Route,
+	link
+} from 'react-router-dom'
+
+router != switch
+
+Hay que definir un componente de router
+El router de react todo lo que hace es MOSTRAR componentes tanto funcionales como constantes (de representación).

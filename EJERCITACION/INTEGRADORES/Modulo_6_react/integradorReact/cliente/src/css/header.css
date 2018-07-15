@@ -1,0 +1,45 @@
+header  {
+
+	height:300px;
+	position:relative;
+}
+
+#datosNombre {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+
+#redes {
+	display:flex;
+}
+
+.iconito {
+	margin:0 5px;
+}
+
+.iconito:hover {
+	background:#d05ce3;
+}
+
+#nombre {
+	margin-left:10px;
+}
+
+a {
+	color:white;
+	text-decoration:none;
+}
+
+@media all and (max-width:780px){
+	header {
+		flex-direction:column;
+		text-align:center;
+		padding-bottom:8px;
+		height:200px;
+	}
+    #datosNombre {
+	flex-direction:column;
+}
+
+}
