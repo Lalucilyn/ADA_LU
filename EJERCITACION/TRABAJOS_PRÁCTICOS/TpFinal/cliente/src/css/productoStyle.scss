@@ -1,0 +1,55 @@
+* { 
+	margin:0;
+	padding:0;
+}
+.miProducto {
+	width:75%;
+	margin-left:16.59%;
+			background:white;
+	article {
+		margin-top:32px;
+		display:flex;
+		flex-wrap:wrap;
+		justify-content:space-between;
+
+		figure{
+			width:51.66%;
+			height:16em;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			border:1px solid lightgray;
+				box-shadow: 5px 5px 5px 1px gray;
+			img {
+			  height:100%;
+			  width:auto;
+			}
+	    
+	    } 
+	    .info {
+
+	    	display:flex;
+	    	flex-direction:column;
+	    	margin-left:8.34%;
+	    	width:35.02%;
+	    	h3 {
+	    		font-size:24px;
+	    	}
+	    	h4 {
+	    		font-size:14px;
+	    	}
+	    	.precio {
+	    		font-size:46px;
+	    	}
+	    	button {
+	    		margin-top:32px;
+	    		width:80%;
+	    		height:2.2em;
+	    	}
+		}
+
+		}
+				.descripcion {
+			margin-top:32px;
+	}
+}
