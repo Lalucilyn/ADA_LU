@@ -41,17 +41,68 @@ self.apiBusqueda = function(req,res,next){
   };
 }
 
-self.apiProducto = function(req,res,next){
+self.apiProducto = async function(req,res,next){
   var urlEntera = req.headers.referer;
   var urlParseada = url.parse(urlEntera); 
   var pathname = urlParseada.pathname;
   var id = pathname.replace("/items/", "");
-  var descripcion = service.obtenerDescripcion(id);
-  console.log("descripción"+descripcion)
+
+  axios.all([service.obtenerDescripcion(id), service.obtenerItem(id)])
+  .then(axios.spread(async function (descripcion, producto) {
+    //console.log(descripcion)
+    //console.log(producto)
+    var decimalesTodos = producto.data.price - Math.floor(producto.data.price);
+    var decimales = decimalesTodos.toFixed(2)  
+    miProducto = {
+      author:{
+        name:"Lucía",
+        lastname:"Wainfeld"
+      },
+      item:{
+        id:producto.data.id,
+        title:producto.data.title,
+        price:{
+          currency:producto.data.currency_id,
+          price:Math.floor(producto.data.price),
+          decimals:decimales
+        },
+        picture:producto.data.pictures[0].url,
+        condition:producto.data.condition,
+        free_shipping:producto.data.shipping.free_shipping,
+        sold_quantity:producto.data.sold_quantity,
+        description:descripcion.data.plain_text
+      }
+  }
+  var categoria = producto.data.category_id;
+  const arrayCategories = await service.obtenerCategoria(producto.data.category_id)
+  miProducto.categories = arrayCategories
+  console.log("Controller: " + arrayCategories)
   
-  axios.get('https://api.mercadolibre.com/items/'+id)
-  .then(function (response) {
-    var decimales = Math.floor(response.data.price) - response.data.price;  
+
+
+  return miProducto
+
+}))
+.then(function(datos){
+  var misDatos = datos;
+    return JSON.stringify(misDatos)
+  })
+.then(function(miJSON){
+    res.send(miJSON)
+  })
+  
+  .catch(function (error) {
+    console.log(error);
+    })
+};
+
+ 
+
+module.exports = self;
+
+/*
+
+ var decimales = Math.floor(response.data.price) - response.data.price;  
     miProducto = {
       author:{
         name:"Lucía",
@@ -71,12 +122,7 @@ self.apiProducto = function(req,res,next){
         sold_quantity:response.data.sold_quantity,
         description:descripcion
       }
-  }
-  return miProducto
-
-  })
-
-  .then(function(data){
+       .then(function(data){
     var datosParaEnviar = JSON.stringify(data)
     res.send(data)
   })
@@ -86,4 +132,4 @@ self.apiProducto = function(req,res,next){
 }
 
 
-module.exports = self;
+*/

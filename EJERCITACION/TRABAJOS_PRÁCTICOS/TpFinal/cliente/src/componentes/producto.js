@@ -30,7 +30,7 @@ class Producto extends Component {
 
   mostrarProducto(item){
      if(item){
-      return <div className="miProducto"><article><figure><img src={item.picture} alt="Imagen del producto"/></figure><div className="info"><h4>{this.traducir(item.condition)} - {item.sold_quantity} vendidos </h4><h3>{item.title}</h3><h4 className="precio">${item.price.price}.<span>{item.price.decimals}</span></h4><button>Comprar</button></div></article><div className="descripcion"><h2>Descripción del producto</h2><p>Estoy teniendo algunos problemas para traerme la descripción del producto. Cuando lo logre, va a estar acá.</p></div></div>
+      return <div className="miProducto"><article><figure><img src={item.picture} alt="Imagen del producto"/></figure><div className="info"><h4>{this.traducir(item.condition)} - {item.sold_quantity} vendidos </h4><h3>{item.title}</h3><h4 className="precio"><span>${item.price.price}</span></h4><button>Comprar</button></div></article><div className="descripcion"><h2>Descripción del producto</h2><p>{item.description}</p></div></div>
     }else{
       return console.log("nope")
     }

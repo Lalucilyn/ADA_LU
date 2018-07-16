@@ -1,0 +1,8 @@
+Para agarrar las rutas érroneas en REACT:
+
+<Route path component={}>
+
+Etiqueta link (hace el redireccionamiento desde el lado del cliente. Puedo cambiar <a></a> por <link></link>. Pareciera que mejora la performance)
+La tengo que importar. Viene con Router
+
+async/await

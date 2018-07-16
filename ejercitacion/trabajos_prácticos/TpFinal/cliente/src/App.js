@@ -18,6 +18,7 @@ const App = () => (
       <Route exact path="/" component={Busqueda}/>
       <Route exact path="/items" component={Resultados}/>
       <Route exact path="/items/:id" component={Producto}/>
+      {/*<Route component={Busqueda}/>*/}
      </div>
   </Router>
 )

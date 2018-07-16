@@ -16,13 +16,14 @@ service.categorizar = function(response){
 service.obtenerItems = function(response){
 	    var items = []
     for(i=0;i<4;i++){
+      console.log(response.data.results[i].price)
       var decimalesTodos  = response.data.results[i].price - Math.floor(response.data.results[i].price)
       var decimales = decimalesTodos.toFixed(2)
       var item = {
         id:response.data.results[i].id,
         title:response.data.results[i].title,
         price:{
-          currency:response.data.results[i].installments.currency_id,
+          currency:response.data.results[i].currency_id,
           amount:Math.floor(response.data.results[i].price),
           decimals:decimales 
         },
@@ -35,6 +36,31 @@ service.obtenerItems = function(response){
     }
     return items
 }
+
+service.obtenerDescripcion = function(producto){
+      return axios.get('https://api.mercadolibre.com/items/'+producto+'/description')
+
+}
+
+service.obtenerItem = function(producto){
+	return axios.get('https://api.mercadolibre.com/items/'+producto)
+}
+
+service.obtenerCategoria = function(categoria){
+	return axios.get("https://api.mercadolibre.com/categories/"+categoria)
+  
+  .then(function (response) {
+    var categorias = response.data.path_from_root;
+    console.log(categorias)
+    return categorias
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+module.exports = service;
+
+/*
 
 service.obtenerDescripcion = function(producto){
       axios.get('https://api.mercadolibre.com/items/'+producto+'/description')
@@ -51,4 +77,6 @@ service.obtenerDescripcion = function(producto){
       })
      
   }
-module.exports = service;
+
+
+*/
