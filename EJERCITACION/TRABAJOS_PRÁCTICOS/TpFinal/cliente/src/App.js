@@ -15,7 +15,7 @@ import {
 const App = () => (
   <Router>
      <div>
-      <Route exact path="/" component={Busqueda}/>
+      <Busqueda/>
       <Route exact path="/items" component={Resultados}/>
       <Route exact path="/items/:id" component={Producto}/>
       {/*<Route component={Busqueda}/>*/}

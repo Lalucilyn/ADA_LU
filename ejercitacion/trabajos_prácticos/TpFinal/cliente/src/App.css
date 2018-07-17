@@ -1,59 +1,8 @@
+
+
 a {
   color:black;
   text-decoration:none;
 }
 
-#cajaBusqueda {
-  background: hotpink;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 5px 0; }
-
-#cajaBusqueda input {
-  margin-left: 2.083%;
-  height: 26px;
-  width: 70.84%;
-  font-size: 18px;
-  color: #999999;
-  border: none;
-  border-radius: 5px 0px 0px 5px; 
-}
-
-#cajaContenido {
-  margin-left: 12.59%;
-  width: 80.5%;
-  background: white; 
-
-}
-  
-#cajaContenido article {
-  display: flex;
-  flex-wrap: wrap;
-  border-bottom:1px solid #EEEEEE;
-  justify-content:space-between;
-  padding:3px;
-}
-    
-#cajaContenido article img {
-  width: 180px;
-  height: 180px;
-
-}
-
-#cajaContenido article h2 {
-  font-size:24px;
-}
-
-#cajaContenido article h3 {
-  font-size:18px;
-}
-
-#cajaContenido article h4 {
-  font-size:12px;
-}
-
-.nombrePrecio {
-  width:60%;
-}
 

@@ -2,40 +2,58 @@
   margin: 0;
   padding: 0; }
 
-.miProducto {
-  width: 75%;
-  margin-left: 16.59%;
-  background: white; }
-  .miProducto article {
-    margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; }
-    .miProducto article figure {
-      width: 51.66%;
-      height: 16em;
+#vistaProducto {
+  margin-left: 8.34%;
+  width: 83%;
+  margin-top: 10px; }
+  #vistaProducto ul {
+    display: flex; }
+    #vistaProducto ul li {
+      list-style: none;
+      margin-right: 11px;
+      text-transform: uppercase;
+      font-size: 16px;
+      color: #003d33; }
+  #vistaProducto .miProducto {
+    background: white; }
+    #vistaProducto .miProducto article {
+      margin-top: 32px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid lightgray;
-      box-shadow: 5px 5px 5px 1px gray; }
-      .miProducto article figure img {
-        height: 100%;
-        width: auto; }
-    .miProducto article .info {
-      display: flex;
-      flex-direction: column;
-      margin-left: 8.34%;
-      width: 35.02%; }
-      .miProducto article .info h3 {
-        font-size: 24px; }
-      .miProducto article .info h4 {
-        font-size: 14px; }
-      .miProducto article .info .precio {
-        font-size: 46px; }
-      .miProducto article .info button {
-        margin-top: 32px;
-        width: 80%;
-        height: 2.2em; }
-  .miProducto .descripcion {
-    margin-top: 32px; }
+      flex-wrap: wrap;
+      justify-content: space-between; }
+      #vistaProducto .miProducto article figure {
+        width: 51.66%;
+        height: 18em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid lightgray;
+        box-shadow: 4px 4px 4px #bdbdbd;
+        padding: 6px; }
+        #vistaProducto .miProducto article figure img {
+          height: 100%;
+          width: auto; }
+      #vistaProducto .miProducto article .info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8.34%;
+        width: 35.02%; }
+        #vistaProducto .miProducto article .info h3 {
+          font-size: 24px; }
+        #vistaProducto .miProducto article .info h4 {
+          font-size: 14px; }
+        #vistaProducto .miProducto article .info .precio {
+          font-size: 46px; }
+        #vistaProducto .miProducto article .info button {
+          margin-top: 32px;
+          width: 40%;
+          height: 2.8em;
+          border-radius: 5px;
+          border: 2px solid #b4004e;
+          outline: 1px solid #b0003a;
+          background: #bf5f82;
+          color: white;
+          text-transform: uppercase; }
+    #vistaProducto .miProducto .descripcion {
+      margin-top: 32px;
+      text-align: justify; }

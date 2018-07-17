@@ -6,3 +6,16 @@ Etiqueta link (hace el redireccionamiento desde el lado del cliente. Puedo cambi
 La tengo que importar. Viene con Router
 
 async/await
+
+conditional rendering
+
+tengo (o no) algo en el state
+
+en mi render:
+{this.state && lo que quiero mostrar}
+
+Para que no se vea raro se usan placeholders
+
+
+12 columnas de 8%
+11 gutters de 0.34%

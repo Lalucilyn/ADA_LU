@@ -5,26 +5,33 @@ const querystring = require('querystring')
 const service = require('../services/serviceBusqueda')
 const self = {};
 
+//Devuelve los resultados de búsqueda
 self.apiBusqueda = function(req,res,next){
+  //Obtengo el query
   var urlEntera = req.headers.referer;
   var urlParseada = url.parse(urlEntera); 
   var query = (querystring.parse(urlParseada.query)).query;
 
+  //Si me llega un query inválido envío una respuesta
   if(query===undefined||!query) {
     var respuesta = {
-                      respuesta:"esperando",
-                      detalle:"Conexión establecida, pero no se ha ingresado búsqueda"
+                    respuesta:"esperando",
+                    detalle:"Conexión establecida, pero no se ha ingresado búsqueda"
                     }
     res.send(JSON.stringify(respuesta))
-  }else{
+  }
+  //Si me llega un query válido, lo proceso para enviar los resultados
+  else{
+    //Llamo a la API de search
     axios.get('https://api.mercadolibre.com/sites/MLA/search?q=/'+query+'&limit=4')
     .then(function (response) {
+      //Creo el objeto con el formato solicitado
       return {
-              author:{
-              name:"Lucía", 
-              lastname:"Wainfeld"
+             author:{
+             name:"Lucía", 
+             lastname:"Wainfeld"
              }, 
-             categories:service.categorizar(response),
+             categories:service.categorizar(query,response),
              items:service.obtenerItems(response)
              }
     })
@@ -41,6 +48,7 @@ self.apiBusqueda = function(req,res,next){
   };
 }
 
+//Devuelve cada producto individualmente
 self.apiProducto = async function(req,res,next){
   var urlEntera = req.headers.referer;
   var urlParseada = url.parse(urlEntera); 
@@ -78,8 +86,6 @@ self.apiProducto = async function(req,res,next){
   miProducto.categories = arrayCategories
   console.log("Controller: " + arrayCategories)
   
-
-
   return miProducto
 
 }))

@@ -1,0 +1,52 @@
+#cajaContenido {
+  margin-left: 8.34%;
+  width: 83%;
+  background: white;
+  margin-top: 10px; }
+  #cajaContenido ul {
+    display: flex; }
+    #cajaContenido ul li {
+      list-style: none;
+      margin-right: 11px;
+      text-transform: uppercase;
+      font-size: 16px;
+      color: #003d33; }
+  #cajaContenido article {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #439889;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px;
+    margin: 12px 0;
+    box-shadow: 4px 4px 4px #bdbdbd; }
+    #cajaContenido article:hover {
+      box-shadow: 4px 4px 4px #8d8d8d;
+      transform: scale(1.01);
+      transition: 0.3s; }
+    #cajaContenido article figure {
+      width: 25%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #cajaContenido article figure img {
+        width: 180px;
+        height: 180px; }
+    #cajaContenido article .nombrePrecio {
+      width: 60%; }
+    #cajaContenido article h2 {
+      font-size: 24px; }
+    #cajaContenido article h3 {
+      font-size: 18px; }
+    #cajaContenido article h4 {
+      font-size: 12px;
+      align-self: flex-start;
+      color: #bf5f82; }
+
+@media all and (max-width: 980px) {
+  #cajaContenido ul {
+    display: none; }
+  #cajaContenido article figure {
+    display: none; }
+  #cajaContenido article .nombrePrecio {
+    width: 80%; } }

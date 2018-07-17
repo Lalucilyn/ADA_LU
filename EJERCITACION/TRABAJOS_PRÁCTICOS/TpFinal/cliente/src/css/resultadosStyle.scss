@@ -1,0 +1,80 @@
+#cajaContenido {
+  margin-left:8.34%;
+  width: 83%;
+  background: white; 
+  margin-top:10px;
+  ul {
+    display:flex;
+    li {
+      list-style:none;
+      margin-right:11px;
+      text-transform:uppercase;
+      font-size:16px;
+      color:#003d33;
+    }
+  }
+  
+  article {
+    display: flex;
+    flex-wrap: wrap;
+    border:1px solid #439889;
+    justify-content:space-between;
+    align-items:center;
+    padding:3px;
+    margin:12px 0;
+    box-shadow: 4px 4px 4px #bdbdbd;
+    &:hover{
+      box-shadow: 4px 4px 4px #8d8d8d;
+      transform:scale(1.01);
+      transition:0.3s;
+    }
+    figure {
+      width:25%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      img {
+        width: 180px;
+        height: 180px;
+      }
+    }
+    
+    .nombrePrecio {
+      width:60%;
+    }
+    
+    h2 {
+      font-size:24px;
+    }
+
+    h3 {
+      font-size:18px;
+    }
+
+    h4 {
+      font-size:12px;
+      align-self:flex-start;
+      color:#bf5f82;
+    }
+  }
+
+}
+
+
+@media all and (max-width:980px){
+  #cajaContenido {
+    ul {
+      display:none;
+    }
+
+    article {
+      figure {
+        display:none;
+      }
+
+      .nombrePrecio {
+        width:80%;
+      }
+    }
+  }
+}
