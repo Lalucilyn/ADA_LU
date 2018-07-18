@@ -34,14 +34,32 @@
         height: 180px; }
     #cajaContenido article .nombrePrecio {
       width: 60%; }
-    #cajaContenido article h2 {
-      font-size: 24px; }
-    #cajaContenido article h3 {
-      font-size: 18px; }
+      #cajaContenido article .nombrePrecio .precio {
+        font-size: 24px;
+        position: relative;
+        display: flex;
+        align-items: center; }
+        #cajaContenido article .nombrePrecio .precio i {
+          font-size: 12px;
+          padding: 6px 5px;
+          border-radius: 70%;
+          background: #439889;
+          color: white;
+          margin-left: 5px; }
+        #cajaContenido article .nombrePrecio .precio .decimales {
+          align-self: flex-start;
+          font-size: 12px; }
+        #cajaContenido article .nombrePrecio .precio h3 {
+          font-size: 18px; }
     #cajaContenido article h4 {
       font-size: 12px;
       align-self: flex-start;
       color: #bf5f82; }
+
+h4 {
+  font-size: 12px;
+  align-self: flex-start;
+  color: #bf5f82; }
 
 @media all and (max-width: 980px) {
   #cajaContenido ul {

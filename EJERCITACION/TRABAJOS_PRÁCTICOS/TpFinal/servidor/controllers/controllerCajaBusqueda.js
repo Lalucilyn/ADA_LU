@@ -10,13 +10,12 @@ self.apiBusqueda = function(req,res,next){
   //Obtengo el query
   var urlEntera = req.headers.referer;
   var urlParseada = url.parse(urlEntera); 
-  var query = (querystring.parse(urlParseada.query)).query;
+  var query = (querystring.parse(urlParseada.query)).search;
 
-  //Si me llega un query inválido envío una respuesta
+  //Si me llega un query inválido, envío una respuesta
   if(query===undefined||!query) {
     var respuesta = {
-                    respuesta:"esperando",
-                    detalle:"Conexión establecida, pero no se ha ingresado búsqueda"
+                    error:"¡Parece que la página que estás buscando no existe!"
                     }
     res.send(JSON.stringify(respuesta))
   }
@@ -34,16 +33,16 @@ self.apiBusqueda = function(req,res,next){
              categories:service.categorizar(query,response),
              items:service.obtenerItems(response)
              }
-    })
+      })
+
     .then(function(datos){
       var misDatos = datos;
-      return JSON.stringify(misDatos)
+      res.send(JSON.stringify(misDatos))
     })
-    .then(function(miJSON){
-      res.send(miJSON)
-    })
+
     .catch(function (error) {
-      console.log(error);
+      var miError = {error:"¡Parece que tu búsqueda no ha arrojado resultados!"}
+      res.send(JSON.stringify(miError))
     })
   };
 }
@@ -57,10 +56,8 @@ self.apiProducto = async function(req,res,next){
 
   axios.all([service.obtenerDescripcion(id), service.obtenerItem(id)])
   .then(axios.spread(async function (descripcion, producto) {
-    //console.log(descripcion)
-    //console.log(producto)
     var decimalesTodos = producto.data.price - Math.floor(producto.data.price);
-    var decimales = decimalesTodos.toFixed(2)  
+    var decimales = decimalesTodos.toFixed(2).toString().replace("0.","");
     miProducto = {
       author:{
         name:"Lucía",
@@ -78,27 +75,23 @@ self.apiProducto = async function(req,res,next){
         condition:producto.data.condition,
         free_shipping:producto.data.shipping.free_shipping,
         sold_quantity:producto.data.sold_quantity,
-        description:descripcion.data.plain_text
+        description:service.traerDescripcion(descripcion.data.plain_text)
       }
-  }
-  var categoria = producto.data.category_id;
-  const arrayCategories = await service.obtenerCategoria(producto.data.category_id)
-  miProducto.categories = arrayCategories
-  console.log("Controller: " + arrayCategories)
-  
-  return miProducto
+    }
+    const arrayCategories = await service.obtenerCategoria(producto.data.category_id)
+    miProducto.categories = arrayCategories
+    return miProducto
+  }))
 
-}))
-.then(function(datos){
-  var misDatos = datos;
-    return JSON.stringify(misDatos)
-  })
-.then(function(miJSON){
+  .then(function(datos){
+    var misDatos = datos;
+    var miJSON = JSON.stringify(misDatos)
     res.send(miJSON)
   })
-  
+
   .catch(function (error) {
-    console.log(error);
+    var miError = {error:"¡Lo sentimos! No encontramos la información del producto!"}
+    res.send(JSON.stringify(miError))
     })
 };
 
@@ -106,36 +99,3 @@ self.apiProducto = async function(req,res,next){
 
 module.exports = self;
 
-/*
-
- var decimales = Math.floor(response.data.price) - response.data.price;  
-    miProducto = {
-      author:{
-        name:"Lucía",
-        lastname:"Wainfeld"
-      },
-      item:{
-        id:response.data.id,
-        title:response.data.title,
-        price:{
-          currency:response.data.currency_id,
-          price:Math.floor(response.data.price),
-          decimals:decimales
-        },
-        picture:response.data.pictures[0].url,
-        condition:response.data.condition,
-        free_shipping:response.data.shipping.free_shipping,
-        sold_quantity:response.data.sold_quantity,
-        description:descripcion
-      }
-       .then(function(data){
-    var datosParaEnviar = JSON.stringify(data)
-    res.send(data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-}
-
-
-*/

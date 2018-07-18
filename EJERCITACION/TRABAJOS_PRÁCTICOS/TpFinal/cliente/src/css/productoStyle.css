@@ -40,10 +40,15 @@
         width: 35.02%; }
         #vistaProducto .miProducto article .info h3 {
           font-size: 24px; }
-        #vistaProducto .miProducto article .info h4 {
+        #vistaProducto .miProducto article .info h5 {
           font-size: 14px; }
-        #vistaProducto .miProducto article .info .precio {
-          font-size: 46px; }
+        #vistaProducto .miProducto article .info .price {
+          font-size: 46px;
+          position: relative; }
+          #vistaProducto .miProducto article .info .price .decimales {
+            position: absolute;
+            top: 0;
+            font-size: 24px; }
         #vistaProducto .miProducto article .info button {
           margin-top: 32px;
           width: 40%;

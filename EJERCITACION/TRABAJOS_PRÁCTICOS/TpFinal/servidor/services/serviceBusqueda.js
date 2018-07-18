@@ -19,7 +19,7 @@ service.obtenerItems = function(response){
 	var items = []
   for(i=0;i<4;i++){
     var decimalesTodos  = response.data.results[i].price - Math.floor(response.data.results[i].price)
-    var decimales = decimalesTodos.toFixed(2)
+    var decimales = decimalesTodos.toFixed(2).toString().replace("0.","")
     //Crea el objeto de cada item con el formato solicitado
     var item = {
           id:response.data.results[i].id,
@@ -61,6 +61,16 @@ service.obtenerCategoria = function(categoria){
                 console.log(error);
               });
 }
+
+//Me devuelve el texto de la descripción o, si no la hay, un string de aviso.
+service.traerDescripcion = function(descripcion){
+  if(descripcion==="" || !descripcion){
+    return "No hay descripción disponible"
+  }else{
+    return descripcion
+  }
+}
+
 module.exports = service;
 
 /*

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Busqueda from './componentes/cajaBusqueda'
 import Resultados from './componentes/resultados'
 import Producto from './componentes/producto'

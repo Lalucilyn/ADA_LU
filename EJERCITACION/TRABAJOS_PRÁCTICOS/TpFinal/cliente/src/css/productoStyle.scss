@@ -55,12 +55,18 @@
 	    	font-size:24px;
 	    }
 	    	
-	    h4 {
+	    h5 {
 	    	font-size:14px;
 	    }
 	    
-	    .precio {
+	    .price {
 	    	font-size:46px;
+	    	position:relative;
+	    	.decimales {
+				position:absolute;
+				top:0;
+				font-size:24px;
+	    	}
 	    }
 	    	
 	    button {
