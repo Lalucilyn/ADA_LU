@@ -1,5 +1,6 @@
 {
   "name": "servidor",
+  "author":"Lucía Wainfeld",
   "version": "0.0.0",
   "private": true,
   "scripts": {

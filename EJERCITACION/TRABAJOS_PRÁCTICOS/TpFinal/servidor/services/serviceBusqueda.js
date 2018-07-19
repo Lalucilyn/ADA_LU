@@ -18,8 +18,7 @@ service.categorizar = function(query,response){
 service.obtenerItems = function(response){
 	var items = []
   for(i=0;i<4;i++){
-    var decimalesTodos  = response.data.results[i].price - Math.floor(response.data.results[i].price)
-    var decimales = decimalesTodos.toFixed(2).toString().replace("0.","")
+
     //Crea el objeto de cada item con el formato solicitado
     var item = {
           id:response.data.results[i].id,
@@ -27,7 +26,7 @@ service.obtenerItems = function(response){
           price:{
             currency:response.data.results[i].currency_id,
             amount:Math.floor(response.data.results[i].price),
-            decimals:decimales 
+            decimals:service.calculoDecimales(response.data.results[i].price) 
           },
           picture:response.data.results[i].thumbnail,
           condition:response.data.results[i].condition,
@@ -42,6 +41,12 @@ service.obtenerItems = function(response){
 //Retorna la descripción de un producto individual
 service.obtenerDescripcion = function(producto){
   return axios.get('https://api.mercadolibre.com/items/'+producto+'/description')
+          .then(function(response){
+            return response
+          })
+          .catch(function(error){ //Evita que el axios.all completo se vaya por el catch si la búsqueda de descripción devuelve un 404 (pasa, por ejemplo, con este producto: https://api.mercadolibre.com/items/MLA732200831/description)
+            return {plain_text:"No hay descripción disponible."}
+          })
 }
 
 //Retorna los datos de un producto individual
@@ -49,47 +54,33 @@ service.obtenerItem = function(producto){
 	return axios.get('https://api.mercadolibre.com/items/'+producto)
 }
 
-//Le pega a la API de categorías para obtener el array para el breadcrumb de producto individual
+//Llama a la API de categorías para obtener el array para el breadcrumb de producto individual
 service.obtenerCategoria = function(categoria){
 	return axios.get("https://api.mercadolibre.com/categories/"+categoria)
               .then(function (response) {
                 var categorias = response.data.path_from_root;
-                console.log(categorias)
-                return categorias
               })
-              .catch(function (error) { //PENDIENTE. ENVIAR ALGO
-                console.log(error);
+              .catch(function (error) { 
+                var categorias = [{name:"Producto sin categorizar"}] //Para el caso eventual de que no pueda recuperar la info de categorías
               });
+              return categorias
 }
 
 //Me devuelve el texto de la descripción o, si no la hay, un string de aviso.
-service.traerDescripcion = function(descripcion){
-  if(descripcion==="" || !descripcion){
-    return "No hay descripción disponible"
+service.traerDescripcion = function(datos){
+  var data = datos.data
+  if(data===undefined || data==="" || !data){
+    return "No hay descripción disponible."
   }else{
-    return descripcion
+    return datos.data.plain_text
   }
+}
+
+service.calculoDecimales = function(numero){
+    var decimalesTodos  = numero - Math.floor(numero)
+    var decimales = decimalesTodos.toFixed(2).toString().replace("0.","")  
+    return decimales
 }
 
 module.exports = service;
 
-/*
-
-service.obtenerDescripcion = function(producto){
-      axios.get('https://api.mercadolibre.com/items/'+producto+'/description')
-      .then(function(response){
-         return response
-      })
-      .then(function(data){
-      	console.log(data.data.plain_text)
-      	return data.data.plain_text
-      })
-
-      .catch(function(error){
-      	return error
-      })
-     
-  }
-
-
-*/

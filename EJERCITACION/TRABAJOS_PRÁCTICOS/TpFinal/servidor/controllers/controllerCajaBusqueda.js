@@ -15,7 +15,7 @@ self.apiBusqueda = function(req,res,next){
   //Si me llega un query inválido, envío una respuesta
   if(query===undefined||!query) {
     var respuesta = {
-                    error:"¡Parece que la página que estás buscando no existe!"
+                    error:"Búsqueda inválida. Por favor, intentalo nuevamente"
                     }
     res.send(JSON.stringify(respuesta))
   }
@@ -41,7 +41,7 @@ self.apiBusqueda = function(req,res,next){
     })
 
     .catch(function (error) {
-      var miError = {error:"¡Parece que tu búsqueda no ha arrojado resultados!"}
+      var miError = {error:"No se han encontrado resultados. Ingresá una nueva búsqueda"}
       res.send(JSON.stringify(miError))
     })
   };
@@ -49,15 +49,15 @@ self.apiBusqueda = function(req,res,next){
 
 //Devuelve cada producto individualmente
 self.apiProducto = async function(req,res,next){
+  //Recupero el ID de producto
   var urlEntera = req.headers.referer;
   var urlParseada = url.parse(urlEntera); 
   var pathname = urlParseada.pathname;
   var id = pathname.replace("/items/", "");
-
+  
+  //Llamo a las apis de item y descripción
   axios.all([service.obtenerDescripcion(id), service.obtenerItem(id)])
   .then(axios.spread(async function (descripcion, producto) {
-    var decimalesTodos = producto.data.price - Math.floor(producto.data.price);
-    var decimales = decimalesTodos.toFixed(2).toString().replace("0.","");
     miProducto = {
       author:{
         name:"Lucía",
@@ -68,14 +68,14 @@ self.apiProducto = async function(req,res,next){
         title:producto.data.title,
         price:{
           currency:producto.data.currency_id,
-          price:Math.floor(producto.data.price),
-          decimals:decimales
+          amount:Math.floor(producto.data.price),
+          decimals:service.calculoDecimales(producto.data.price)
         },
         picture:producto.data.pictures[0].url,
         condition:producto.data.condition,
         free_shipping:producto.data.shipping.free_shipping,
         sold_quantity:producto.data.sold_quantity,
-        description:service.traerDescripcion(descripcion.data.plain_text)
+        description:service.traerDescripcion(descripcion)
       }
     }
     const arrayCategories = await service.obtenerCategoria(producto.data.category_id)
@@ -90,7 +90,8 @@ self.apiProducto = async function(req,res,next){
   })
 
   .catch(function (error) {
-    var miError = {error:"¡Lo sentimos! No encontramos la información del producto!"}
+    console.log(error)
+    var miError = {error:"No se pudo recuperar la información del producto solicitado. Por favor ingresá otra búsqueda"}
     res.send(JSON.stringify(miError))
     })
 };

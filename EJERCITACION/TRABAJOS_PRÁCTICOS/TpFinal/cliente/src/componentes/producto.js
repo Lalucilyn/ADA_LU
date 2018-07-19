@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../css/productoStyle.css';
+var auxiliares = require('../auxiliares/auxiliares.js')
+
 class Producto extends Component {
 
   constructor(){
@@ -11,6 +13,7 @@ class Producto extends Component {
     }
   }
 
+  //Llamo a mi servidor que a la vez llamará a los endpoints item y description de MELI
   componentDidMount() {
     var that = this
     fetch("/items/item")
@@ -35,41 +38,45 @@ class Producto extends Component {
       })
   }
 
-  traducir(condicion){
-    var traduccion;
-    condicion==="new"?traduccion="Nuevo":traduccion="Usado"
-    return traduccion
-  }
 
-  elegirMoneda(currency){
-    console.log(currency)
-    var simbolo;
-    currency==="USD"?simbolo="US$ ":simbolo="$ ";
-    return simbolo
-  }
 
   render() {
       var item = this.state.data.item
       var categorias = this.state.data.categories
-      var estiloError = {
-        "textAlign":"center",
-        "fontSize":"24px",
-        "color":"#00695c",
-        "width":"83%",
-        "margin":"0 auto",
-        "marginTop":"32px",
-      }
 
       return (
       <div id="vistaProducto">
-        {this.state.error && <h1 style={estiloError}>{this.state.textoError}</h1>}
+         {this.state.error && <div className="mensaje"><img src="/images/errorLogo.png" alt="logo"/><h1>{this.state.textoError}</h1></div>}
         <ul>
-          {categorias && categorias.map(function(name,index){return <li key={name.name}>{name.name}</li>})}
+          {categorias && categorias.map(function(name,index){
+            return <li key={name.id}>{name.name}</li>
+            })
+          }
         </ul>
         <div>
-          {item && <div className="miProducto"><article><figure><img src={item.picture} alt="Imagen del producto"/></figure><div className="info"><h5>{this.traducir(item.condition)} - {item.sold_quantity} vendidos </h5><h3>{item.title}</h3><h5 className="price"><span>{this.elegirMoneda(item.price.currency)}{item.price.price}</span>{item.price.decimals!="00" && <span className="decimales">{item.price.decimals}</span>}</h5><button>Comprar</button></div></article><div className="descripcion"><h2>Descripción del producto</h2><p>{item.description}</p></div></div>}
+          {item && <div className="miProducto">
+          <article>
+            <figure>
+              <img src={item.picture} alt="Imagen del producto"/>
+            </figure><div className="info">
+            <h5>{auxiliares.traducirCondicion(item.condition)} - {item.sold_quantity} vendidos </h5>
+            <h3>{item.title}</h3>
+            <h5 className="price">
+              <span>
+                {auxiliares.elegirMoneda(item.price.currency)}{auxiliares.imprimirPrecio(item.price.amount)}
+              </span>
+              {item.price.decimals!="00" && <span className="decimales">{item.price.decimals}</span>}
+            </h5>
+            {item.free_shipping && <h6>Envío gratis</h6>}
+            <button>Comprar</button></div>
+          </article>
+          <div className="descripcion">
+            <h2>Descripción del producto</h2>
+            <p>{item.description}</p>
+          </div>
+        </div>}
         </div>
-     </div>
+      </div>
     )
   }
 }
