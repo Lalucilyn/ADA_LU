@@ -32,7 +32,7 @@ class Resultados extends Component {
     })
     .catch(function(error){
       that.setState({error:true});
-      this.setState({loading:false})
+      that.setState({loading:false})
       that.setState({textoError:"No se pudo establecer la conexión con el servidor"})
      })
   }
