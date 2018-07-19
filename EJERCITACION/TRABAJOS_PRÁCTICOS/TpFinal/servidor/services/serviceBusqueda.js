@@ -6,10 +6,15 @@ service.categorizar = function(query,response){
   var filtroCategorias = response.data.filters[0]
   //Resuelvo los casos en el que filters viene vacío. Cuando pasa, mando el nombre de la query
   if(filtroCategorias === undefined){
-    var categorias=[{name:query}]
-  //En los otros casos, mando el array completo de categorías
+    var categorias=[query]
+  //En los otros casos, mando el array con los nombres de categorías
   }else{
-    var categorias=response.data.filters[0].values[0].path_from_root
+    var objetosCategorias = response.data.filters[0].values[0].path_from_root
+    var categorias=[];
+    for(i=0;i<objetosCategorias.length;i++){
+      categorias.push(objetosCategorias[i].name)
+    }
+    
   }
   return categorias
 }

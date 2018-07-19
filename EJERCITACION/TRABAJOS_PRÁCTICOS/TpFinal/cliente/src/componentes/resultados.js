@@ -40,6 +40,7 @@ class Resultados extends Component {
   render() {
     var arrayDatos = this.state.data.items
     var arrayCategorias = this.state.data.categories
+    console.log(arrayCategorias)
 
     return (
       <div>
@@ -48,7 +49,7 @@ class Resultados extends Component {
         <div id="cajaContenido">
           <ul>
             {arrayCategorias && arrayCategorias.map(function(name,index){
-              return <li key={name.id}>{name.name}{auxiliares.agregarSimbolo(arrayCategorias,index)}</li>})}
+              return <li key={name}>{name}{auxiliares.agregarSimbolo(arrayCategorias,index)}</li>})}
           </ul>
           <div>
             {arrayDatos && arrayDatos.map(function(name, index){
