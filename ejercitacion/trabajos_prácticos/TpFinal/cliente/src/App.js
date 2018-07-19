@@ -8,7 +8,6 @@ import './css/appStyle.css'
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch
 } from 'react-router-dom'
 

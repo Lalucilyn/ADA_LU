@@ -38,6 +38,7 @@ service.obtenerItems = function(response){
   return items
 }
 
+
 //Retorna la descripción de un producto individual
 service.obtenerDescripcion = function(producto){
   return axios.get('https://api.mercadolibre.com/items/'+producto+'/description')
@@ -57,13 +58,16 @@ service.obtenerItem = function(producto){
 //Llama a la API de categorías para obtener el array para el breadcrumb de producto individual
 service.obtenerCategoria = function(categoria){
 	return axios.get("https://api.mercadolibre.com/categories/"+categoria)
+     
               .then(function (response) {
                 var categorias = response.data.path_from_root;
+                return categorias
               })
+              
               .catch(function (error) { 
                 var categorias = [{name:"Producto sin categorizar"}] //Para el caso eventual de que no pueda recuperar la info de categorías
+                return categorias
               });
-              return categorias
 }
 
 //Me devuelve el texto de la descripción o, si no la hay, un string de aviso.
@@ -71,6 +75,8 @@ service.traerDescripcion = function(datos){
   var data = datos.data
   if(data===undefined || data==="" || !data){
     return "No hay descripción disponible."
+  }else if(!data.plain_text || data.plain_text===""){
+    return "No hay descripción disponible"
   }else{
     return datos.data.plain_text
   }

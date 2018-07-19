@@ -90,7 +90,6 @@ self.apiProducto = async function(req,res,next){
   })
 
   .catch(function (error) {
-    console.log(error)
     var miError = {error:"No se pudo recuperar la información del producto solicitado. Por favor ingresá otra búsqueda"}
     res.send(JSON.stringify(miError))
     })

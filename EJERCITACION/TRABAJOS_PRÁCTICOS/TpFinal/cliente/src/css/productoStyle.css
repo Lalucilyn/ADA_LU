@@ -41,6 +41,7 @@
         flex-direction: column;
         margin-top: 32px;
         margin-left: 8.34%;
+        margin-right: 32px;
         width: 25%; }
         #vistaProducto .miProducto article .info h3 {
           font-size: 24px; }
@@ -57,7 +58,7 @@
           color: #00695c; }
         #vistaProducto .miProducto article .info button {
           margin-top: 32px;
-          width: 40%;
+          width: 70%;
           height: 2.8em;
           border-radius: 5px;
           border: 2px solid #b4004e;
@@ -65,6 +66,10 @@
           background: #bf5f82;
           color: white;
           text-transform: uppercase; }
+          #vistaProducto .miProducto article .info button:hover {
+            background: #c67190;
+            transition: 0.3s;
+            border-color: #ce0059; }
     #vistaProducto .miProducto .descripcion {
       margin-top: 76px;
       margin-left: 32px;

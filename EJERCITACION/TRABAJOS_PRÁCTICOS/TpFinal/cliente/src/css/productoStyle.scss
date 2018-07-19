@@ -16,7 +16,6 @@ $margenPeque: 16px;
 	ul {
     display:flex;
     margin-bottom:$margenPeque;
-    
     li {
       list-style:none;
       margin-right:11px;
@@ -56,6 +55,7 @@ $margenPeque: 16px;
 	    	flex-direction:column;
 	    	margin-top:$margenGrande;
 	    	margin-left:8.34%;
+	    	margin-right:$margenGrande;
 	    	width:25%;
 	    
 	    	h3 {
@@ -83,7 +83,7 @@ $margenPeque: 16px;
 	    	
 	    	button {
 	    		margin-top:32px;
-	    		width:40%;
+	    		width:70%;
 	    		height:2.8em;
 	    		border-radius:5px;
 	    		border:2px solid #b4004e;
@@ -91,7 +91,11 @@ $margenPeque: 16px;
 	    		background:#bf5f82;
 	    		color:white;
 	    		text-transform:uppercase;
-	   		}
+	    		&:hover{
+	    			background:#c67190;
+	    			transition:0.3s;
+	    			border-color:#ce0059;
+	   			}}
 			}
 		}
 		

@@ -32,4 +32,12 @@ self.elegirMoneda = function(moneda){
     return simbolo
 }
 
+self.agregarSimbolo = function(items,index){
+    var cantidad = items.length - 1
+    if(index!==cantidad){
+        return " >"
+
+
+     }
+}
 module.exports = self;

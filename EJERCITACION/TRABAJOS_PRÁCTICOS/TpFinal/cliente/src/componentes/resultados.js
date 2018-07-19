@@ -17,23 +17,20 @@ class Resultados extends Component {
   componentDidMount() {
     var that = this; 
     fetch("/items")
-     .then((response) => {
+    .then((response) => {
       return response.json()
-     })
-     .then((recurso) => {
-     if(recurso.error){
-      console.log(recurso.error)
-      this.setState({error:true})
-      this.setState({textoError:recurso.error})
-      console.log(this.state)
-     }else{ 
-     console.log(recurso.items)
-     this.setState({ data: recurso })
-     this.setState({loading:false})
-     console.log(this.state)
-     }
-     })
-     .catch(function(error){
+    })
+    .then((recurso) => {
+      if(recurso.error){
+        this.setState({error:true})
+        this.setState({textoError:recurso.error})
+        this.setState({loading:false})
+      }else{ 
+        this.setState({ data: recurso })
+        this.setState({loading:false})
+      }
+    })
+    .catch(function(error){
       that.setState({error:true});
       this.setState({loading:false})
       that.setState({textoError:"No se pudo establecer la conexión con el servidor"})
@@ -51,7 +48,7 @@ class Resultados extends Component {
         <div id="cajaContenido">
           <ul>
             {arrayCategorias && arrayCategorias.map(function(name,index){
-              return <li key={name.id}>{name.name}</li>})}
+              return <li key={name.id}>{name.name}{auxiliares.agregarSimbolo(arrayCategorias,index)}</li>})}
           </ul>
           <div>
             {arrayDatos && arrayDatos.map(function(name, index){

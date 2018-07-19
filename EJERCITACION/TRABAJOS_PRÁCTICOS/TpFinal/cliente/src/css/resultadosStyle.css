@@ -6,6 +6,8 @@
   #cajaContenido ul {
     display: flex;
     margin: 16px 0; }
+    #cajaContenido ul:first-child {
+      before: content("algo"); }
     #cajaContenido ul li {
       list-style: none;
       margin-right: 11px;

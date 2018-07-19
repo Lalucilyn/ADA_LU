@@ -9,7 +9,8 @@ class Producto extends Component {
     this.state = {
     data:{},
     error:false,
-    textError:""
+    textError:"",
+    loading:true
     }
   }
 
@@ -22,19 +23,18 @@ class Producto extends Component {
       })
       .then((recurso) => {
         if(recurso.error){
-          console.log(recurso.error);
           this.setState({error:true})
           this.setState({textoError:recurso.error})
-          console.log(this.state)
+          this.setState({loading:false})
         }else{ 
-          console.log(recurso)
           this.setState({ data: recurso })
-          console.log(this.state.data)
+          this.setState({loading:false})
         }
       })
       .catch(function(error){
         that.setState({error:true});
         that.setState({textoError:"No se pudo establecer la conexión con el servidor"})
+        that.setState({loading:false})
       })
   }
 
@@ -46,10 +46,11 @@ class Producto extends Component {
 
       return (
       <div id="vistaProducto">
+         {this.state.loading && <div className="spinner"></div>}
          {this.state.error && <div className="mensaje"><img src="/images/errorLogo.png" alt="logo"/><h1>{this.state.textoError}</h1></div>}
         <ul>
           {categorias && categorias.map(function(name,index){
-            return <li key={name.id}>{name.name}</li>
+            return <li key={name.id}>{name.name}{auxiliares.agregarSimbolo(categorias,index)}</li>
             })
           }
         </ul>
@@ -65,7 +66,7 @@ class Producto extends Component {
               <span>
                 {auxiliares.elegirMoneda(item.price.currency)}{auxiliares.imprimirPrecio(item.price.amount)}
               </span>
-              {item.price.decimals!="00" && <span className="decimales">{item.price.decimals}</span>}
+              {item.price.decimals!=="00" && <span className="decimales">{item.price.decimals}</span>}
             </h5>
             {item.free_shipping && <h6>Envío gratis</h6>}
             <button>Comprar</button></div>
