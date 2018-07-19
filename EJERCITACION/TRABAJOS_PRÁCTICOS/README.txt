@@ -1,5 +1,5 @@
 ﻿En esta carpeta subiré los trabajos prácticos a medida que los vaya haciendo.
-- TP CINCO EN PROGRESO
+- TP CINCO - LISTO PARA CORREGIR
 - TP CUATRO LISTO (trabajo grupal. Está subido en el repositorio llamado "tpCuatro")
 - TP TRES LISTO
 - TP DOS LISTO
